@@ -53,7 +53,7 @@ const ELLIPSE_ATTS = ['cx', 'cy', 'rx', 'ry'];
 const POLYGON_ATTS = ['points'];
 const POLYLINE_ATTS = ['points'];
 
-const const COMMON_ATTS = ['fill', 'fillOpacity', 'opacity', 'stroke', 'strokeWidth', 'strokeOpacity', 'strokeLinecap', 'strokeLinejoin',
+const COMMON_ATTS = ['fill', 'fillOpacity', 'opacity', 'stroke', 'strokeWidth', 'strokeOpacity', 'strokeLinecap', 'strokeLinejoin',
     'strokeDasharray', 'strokeDashoffset', 'x', 'y', 'rotate', 'scale', 'origin', 'originX', 'originY'];
 
 let ind = 0;
