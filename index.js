@@ -28,6 +28,7 @@ const ACEPTED_SVG_ELEMENTS = [
   'g',
   'circle',
   'path',
+  'line',
   'rect',
   'defs',
   'linearGradient',
@@ -52,7 +53,7 @@ const ELLIPSE_ATTS = ['cx', 'cy', 'rx', 'ry'];
 const POLYGON_ATTS = ['points'];
 const POLYLINE_ATTS = ['points'];
 
-const COMMON_ATTS = ['fill', 'fillOpacity', 'stroke', 'strokeWidth', 'strokeOpacity', 'strokeLinecap', 'strokeLinejoin',
+const const COMMON_ATTS = ['fill', 'fillOpacity', 'opacity', 'stroke', 'strokeWidth', 'strokeOpacity', 'strokeLinecap', 'strokeLinejoin',
     'strokeDasharray', 'strokeDashoffset', 'x', 'y', 'rotate', 'scale', 'origin', 'originX', 'originY'];
 
 let ind = 0;
@@ -130,13 +131,16 @@ class SvgUri extends Component{
         case 'path':
              componentAtts = this.obtainComponentAtts(node, PATH_ATTS);
             return <Path key={i} {...componentAtts}>{childs}</Path>;
+        case 'line':
+             componentAtts = this.obtainComponentAtts(node, LINE_ATTS);
+            return <Line key={i} {...componentAtts}>{childs}</Line>;
         case 'circle':
              componentAtts = this.obtainComponentAtts(node, CIRCLE_ATTS);
             return <Circle key={i} {...componentAtts}>{childs}</Circle>;
         case 'rect':
              componentAtts = this.obtainComponentAtts(node, RECT_ATTS);
             return <Rect key={i} {...componentAtts}>{childs}</Rect>;
-        case 'defs': 
+        case 'defs':
             return <Defs key={i}>{childs}</Defs>;
         case 'linearGradient':
              componentAtts = this.obtainComponentAtts(node, LINEARG_ATTS);
@@ -201,6 +205,10 @@ class SvgUri extends Component{
       return element;
   }
 
+  setNativeProps(nativeProps) {
+       this._root.setNativeProps(nativeProps);
+  }
+
 	render(){
     try{
         if (this.state.svgXmlData == null)
@@ -213,7 +221,7 @@ class SvgUri extends Component{
         let rootSVG = this.inspectNode(doc.childNodes[0]);
 
         return(
-            <View style={this.props.style}>
+            <View style={this.props.style} ref={component => this._root = component}>
               {rootSVG}
             </View>
         );
